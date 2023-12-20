@@ -24,13 +24,14 @@
                 <TextBox VerticalAlignment="Center" Text="{Binding ElementName=timerGrid, Path=SelectedItem.name}"></TextBox>
                 <Label VerticalAlignment="Center" HorizontalAlignment="Right">Time</Label>
                 <UniformGrid VerticalAlignment="Center" Columns="3" Rows="1">
-                    <TextBox VerticalAlignment="Center" Text="{Binding ElementName=timerGrid, Path=SelectedItem.hours}"></TextBox>
-                    <TextBox VerticalAlignment="Center" Text="{Binding ElementName=timerGrid, Path=SelectedItem.minutes}"></TextBox>
-                    <TextBox VerticalAlignment="Center" Text="{Binding ElementName=timerGrid, Path=SelectedItem.seconds}"></TextBox>
+                    <TextBox x:Name="hoursField" VerticalAlignment="Center" Text="{Binding ElementName=timerGrid, Path=SelectedItem.hours}"></TextBox>
+                    <TextBox x:Name="minutesField" VerticalAlignment="Center" Text="{Binding ElementName=timerGrid, Path=SelectedItem.minutes}"></TextBox>
+                    <TextBox x:Name="secondsField" VerticalAlignment="Center" Text="{Binding ElementName=timerGrid, Path=SelectedItem.seconds}"></TextBox>
+                    <TextBox x:Name="secondsAbsoluteField" Visibility="Hidden" Text="{Binding ElementName=timerGrid, Path=SelectedItem.secondsAbsolute}"></TextBox>
                 </UniformGrid>
             </UniformGrid>
             <UniformGrid Rows="1" VerticalAlignment="Bottom">
-                <Button x:Name="sample_Start" VerticalAlignment="Bottom">Start</Button>
+                <Button x:Name="timer_Start" VerticalAlignment="Bottom" Click="timer_Start_Click">Start</Button>
                 <Button VerticalAlignment="Bottom">Stop</Button>
                 <Button VerticalAlignment="Bottom">Reset</Button>
             </UniformGrid>

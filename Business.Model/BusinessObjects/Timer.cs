@@ -57,17 +57,17 @@ namespace De.HsFlensburg.cstime079.Business.Model.BusinessObjects
         
         public string getHours()
         {
-            return secondsAbsolute / 3600 < 10 ? "0" : "" + (secondsAbsolute / 3600).ToString();
+            return (secondsAbsolute / 3600 < 10 ? "0" : "") + (secondsAbsolute / 3600).ToString();
         }
 
         public string getMinutes()
         {
-            return secondsAbsolute / 60 % 60 < 10 ? "0" : "" + (secondsAbsolute / 60 % 60).ToString();
+            return (secondsAbsolute / 60 % 60 < 10 ? "0" : "") + (secondsAbsolute / 60 % 60).ToString();
         }
 
         public string getSeconds()
         {
-            return secondsAbsolute % 60 < 10 ? "0" : "" + (secondsAbsolute % 60).ToString();
+            return (secondsAbsolute % 60 < 10 ? "0" : "") + (secondsAbsolute % 60).ToString();
         }
 
         public void setTime(int hours, int seconds, int minutes)
