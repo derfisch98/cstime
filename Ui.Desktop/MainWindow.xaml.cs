@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Ui.Desktop
+namespace De.HsFlensburg.cstime079.Ui.Desktop
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

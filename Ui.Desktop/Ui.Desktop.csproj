@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7ABB300E-E130-4334-8F34-B50D3809C4E9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Ui.Desktop</RootNamespace>
+    <RootNamespace>De.HsFlensburg.cstime079.Ui.Desktop</RootNamespace>
     <AssemblyName>Ui.Desktop</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -93,6 +93,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logic.Ui\Logic.Ui.csproj">
+      <Project>{54a72781-94e9-478f-8d11-b8120d3a39d8}</Project>
+      <Name>Logic.Ui</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

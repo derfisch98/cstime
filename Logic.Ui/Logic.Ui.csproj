@@ -41,7 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\IViewModel.cs" />
+    <Compile Include="Base\ViewModelBase.cs" />
+    <Compile Include="Base\ViewModelSyncCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wrapper\TimerGroupViewModel.cs" />
+    <Compile Include="Wrapper\TimerViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business.Model\Business.Model.csproj">
+      <Project>{74e4cddb-b5cd-41c8-bb85-75dfc1a0a820}</Project>
+      <Name>Business.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

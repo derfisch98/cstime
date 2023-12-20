@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace De.HsFlensburg.cstime079.Business.Model.BusinessObjects
 {
-    internal class Timer
+    public class Timer : INotifyPropertyChanged
     {
-        private Int32 secondsAbsolute;
+        public Int32 secondsAbsolute {  get; set; }
         private Int32 initial;
-        private Int32 hours;
-        private Int32 minutes;
-        private Int32 seconds;
-        private string name {  get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string name {  get; set; }
+
+        public Timer() { }
         public Timer(int seconds, string name)
         {
             this.secondsAbsolute = seconds;
@@ -28,16 +32,22 @@ namespace De.HsFlensburg.cstime079.Business.Model.BusinessObjects
             initial = secondsAbsolute;
         }
 
-        public void run()
+        public async void run()
         {
             while (secondsAbsolute >= 0)
             {
                 Console.Clear();
                 Console.WriteLine("Timer " + this.name);
                 Console.WriteLine(getHours() + ":" + getMinutes() + ":" + getSeconds());
-                System.Threading.Thread.Sleep(1000);
+                await waitMil(1000);
                 secondsAbsolute -= 1;
+
             }
+        }
+
+        async Task waitMil(int milliseconds)
+        {
+            await Task.Delay(milliseconds);
         }
 
         public void reset()
@@ -58,6 +68,12 @@ namespace De.HsFlensburg.cstime079.Business.Model.BusinessObjects
         public string getSeconds()
         {
             return secondsAbsolute % 60 < 10 ? "0" : "" + (secondsAbsolute % 60).ToString();
+        }
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
