@@ -12,10 +12,6 @@ namespace De.HsFlensburg.cstime079.Business.Model.BusinessObjects
     {
         public TimerGroup() 
         {
-            Timer timer1 = new Timer(30, "schrott1");
-            Timer timer2 = new Timer(45, "schrott2");
-            this.Add(timer1);
-            this.Add(timer2);
         }
         public string name {  get; set; }
         public void runAll() 

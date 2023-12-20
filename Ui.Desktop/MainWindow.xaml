@@ -15,6 +15,9 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
         <UniformGrid Columns="1" Rows="2">
             <UniformGrid>
                 <Label VerticalAlignment="Center" HorizontalAlignment="Right">Name</Label>

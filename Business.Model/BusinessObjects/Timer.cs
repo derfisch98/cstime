@@ -70,6 +70,12 @@ namespace De.HsFlensburg.cstime079.Business.Model.BusinessObjects
             return secondsAbsolute % 60 < 10 ? "0" : "" + (secondsAbsolute % 60).ToString();
         }
 
+        public void setTime(int hours, int seconds, int minutes)
+        {
+            initial = hours * 3600 + minutes * 60 + seconds;
+            this.reset();
+        }
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

@@ -95,6 +95,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Business.Model\Business.Model.csproj">
+      <Project>{74e4cddb-b5cd-41c8-bb85-75dfc1a0a820}</Project>
+      <Name>Business.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logic.Ui\Logic.Ui.csproj">
       <Project>{54a72781-94e9-478f-8d11-b8120d3a39d8}</Project>
       <Name>Logic.Ui</Name>
