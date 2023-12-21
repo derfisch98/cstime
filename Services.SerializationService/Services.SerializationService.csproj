@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{54A72781-94E9-478F-8D11-B8120D3A39D8}</ProjectGuid>
+    <ProjectGuid>{C357A19D-D938-40D9-B0A7-C21E54BD7F71}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>De.HsFlensburg.cstime079.Logic.Ui</RootNamespace>
-    <AssemblyName>Logic.Ui</AssemblyName>
+    <RootNamespace>De.HsFlensburg.cstime079.Services.SerializationService</RootNamespace>
+    <AssemblyName>Services.SerializationService</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,26 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\IViewModel.cs" />
-    <Compile Include="Base\ViewModelBase.cs" />
-    <Compile Include="Base\ViewModelSyncCollection.cs" />
+    <Compile Include="ModelFileHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RelayCommand.cs" />
-    <Compile Include="ViewModelLocator.cs" />
-    <Compile Include="ViewModels\DataGridViewModel.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\NewTimerViewModel.cs" />
-    <Compile Include="Wrapper\TimerGroupViewModel.cs" />
-    <Compile Include="Wrapper\TimerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business.Model\Business.Model.csproj">
       <Project>{74e4cddb-b5cd-41c8-bb85-75dfc1a0a820}</Project>
       <Name>Business.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Services.SerializationService\Services.SerializationService.csproj">
-      <Project>{c357a19d-d938-40d9-b0a7-c21e54bd7f71}</Project>
-      <Name>Services.SerializationService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

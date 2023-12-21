@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace De.HsFlensburg.cstime079.Business.Model.BusinessObjects
 {
+    [Serializable]
     public class Timer : INotifyPropertyChanged
     {
-        public Int32 secondsAbsolute {  get; set; }
-        private Int32 initial;
+        public int secondsAbsolute {  get; set; }
+        private int initial;
 
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string name {  get; set; }
@@ -32,29 +34,6 @@ namespace De.HsFlensburg.cstime079.Business.Model.BusinessObjects
             initial = secondsAbsolute;
         }
 
-        public async void run()
-        {
-            while (secondsAbsolute >= 0)
-            {
-                Console.Clear();
-                Console.WriteLine("Timer " + this.name);
-                Console.WriteLine(getHours() + ":" + getMinutes() + ":" + getSeconds());
-                await waitMil(1000);
-                secondsAbsolute -= 1;
-
-            }
-        }
-
-        async Task waitMil(int milliseconds)
-        {
-            await Task.Delay(milliseconds);
-        }
-
-        public void reset()
-        {
-            secondsAbsolute = initial;
-        }
-        
         public string getHours()
         {
             return (secondsAbsolute / 3600 < 10 ? "0" : "") + (secondsAbsolute / 3600).ToString();
@@ -73,7 +52,6 @@ namespace De.HsFlensburg.cstime079.Business.Model.BusinessObjects
         public void setTime(int hours, int seconds, int minutes)
         {
             initial = hours * 3600 + minutes * 60 + seconds;
-            this.reset();
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

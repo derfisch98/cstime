@@ -62,7 +62,7 @@ namespace De.HsFlensburg.cstime079.Logic.Ui.Base
         }
         public abstract void NewModelAssigned();
 
-        private void OnPropertyChangedInModel(object sender, PropertyChangedEventArgs e)
+        internal void OnPropertyChangedInModel(object sender, PropertyChangedEventArgs e)
         {
             OnPropertyChanged(e.PropertyName);
         }

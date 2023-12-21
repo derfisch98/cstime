@@ -1,4 +1,5 @@
-﻿using De.HsFlensburg.cstime079.Logic.Ui.Wrapper;
+﻿using De.HsFlensburg.cstime079.Business.Model.BusinessObjects;
+using De.HsFlensburg.cstime079.Logic.Ui.Wrapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +27,24 @@ namespace De.HsFlensburg.cstime079.Ui.Desktop
             InitializeComponent();
         }
 
+        private void NewTimerDialog(object sender, EventArgs e)
+        {
+            NewTimerWindow newTimerWindow = new NewTimerWindow();
+            newTimerWindow.ShowDialog();
+        }
+
+        private void OpenDataGridWindow(object sender, EventArgs e)
+        {
+            DataGridWindow dataGridWindow = new DataGridWindow();
+            dataGridWindow.Show();
+        }
+
         private async void timer_Start_Click(object sender, RoutedEventArgs e)
         {
             int seconds = Int32.Parse(secondsAbsoluteField.Text);
             await waitTimer(seconds);
             MessageBox.Show("Hol deine Pizza aus dem Ofen");
+            Console.WriteLine(timerGrid.SelectedItem.ToString());
         }
 
         async Task waitTimer(int seconds)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,14 @@ namespace De.HsFlensburg.cstime079.Logic.Ui.Wrapper
     {
         public override void NewModelAssigned()
         {
-            throw new NotImplementedException();
+            foreach (var timer in this)
+            {
+                var modelPropChanged = timer.Model as INotifyPropertyChanged;
+                if (modelPropChanged != null)
+                {
+                    modelPropChanged.PropertyChanged += timer.OnPropertyChangedInModel;
+                }
+            }
         }
     }
 }
