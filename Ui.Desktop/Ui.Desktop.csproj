@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MessageBusLogic\MessageListener.cs" />
+    <Compile Include="ViewTimerWindow.xaml.cs">
+      <DependentUpon>ViewTimerWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="DataGridWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -75,6 +79,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NewTimerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewTimerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -109,14 +117,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Business.Model\Business.Model.csproj">
-      <Project>{74e4cddb-b5cd-41c8-bb85-75dfc1a0a820}</Project>
-      <Name>Business.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Logic.Ui\Logic.Ui.csproj">
       <Project>{54a72781-94e9-478f-8d11-b8120d3a39d8}</Project>
       <Name>Logic.Ui</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Services.MessageBusWithParameter\Services.MessageBusWithParameter.csproj">
+      <Project>{df700392-078d-4444-8d3c-105a2c4beda6}</Project>
+      <Name>Services.MessageBusWithParameter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services.MessageBus\Services.MessageBus.csproj">
+      <Project>{bf5ee9b9-5583-4218-83b6-246ac712b97a}</Project>
+      <Name>Services.MessageBus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services.SerializationService\Services.SerializationService.csproj">
+      <Project>{c357a19d-d938-40d9-b0a7-c21e54bd7f71}</Project>
+      <Name>Services.SerializationService</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

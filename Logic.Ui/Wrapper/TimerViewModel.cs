@@ -1,44 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using De.HsFlensburg.cstime079.Business.Model.BusinessObjects;
+﻿using De.HsFlensburg.cstime079.Business.Model.BusinessObjects;
 using De.HsFlensburg.cstime079.Logic.Ui.Base;
 
 namespace De.HsFlensburg.cstime079.Logic.Ui.Wrapper
 {
     public class TimerViewModel : ViewModelBase<Timer>
     {
-        private Timer timer = new Timer();
-        public TimerViewModel(Timer timer) 
-        {
-            this.timer = timer;
-        }
         public TimerViewModel() { }
         public int secondsAbsolute
         {
             get
             {
-                return timer.secondsAbsolute;
+                return Model.SecondsAbsolute;
             }
             set
             {
-                timer.secondsAbsolute = value;
+                Model.SecondsAbsolute = value;
             }
         }
 
         public string name
         {
             get
-            { 
-                return timer.name; 
+            {
+                return Model.Name;
             }
             set
             {
-                timer.name = value;
+                Model.Name = value;
             }
         }
 
@@ -46,11 +34,11 @@ namespace De.HsFlensburg.cstime079.Logic.Ui.Wrapper
         {
             get
             {
-                return timer.getHours();
+                return Model.Hours;
             }
             set
             {
-                //
+                Model.Hours = value;
             }
         }
 
@@ -58,11 +46,11 @@ namespace De.HsFlensburg.cstime079.Logic.Ui.Wrapper
         {
             get
             {
-                return timer.getMinutes();
+                return Model.Minutes;
             }
             set
             {
-                //
+                Model.Minutes = value;
             }
         }
 
@@ -70,16 +58,16 @@ namespace De.HsFlensburg.cstime079.Logic.Ui.Wrapper
         {
             get
             {
-                return timer.getSeconds();
+                return Model.Seconds;
             }
             set
             {
-                //
+                Model.Seconds = value;
             }
         }
-
-        public override void NewModelAssigned()
+        public void NewModelAssigned()
         {
+
         }
     }
 }

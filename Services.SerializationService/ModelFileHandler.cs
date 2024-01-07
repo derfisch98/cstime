@@ -1,12 +1,7 @@
 ﻿using De.HsFlensburg.cstime079.Business.Model.BusinessObjects;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace De.HsFlensburg.cstime079.Services.SerializationService
 {
@@ -15,8 +10,12 @@ namespace De.HsFlensburg.cstime079.Services.SerializationService
         public TimerGroup ReadModelFromFile(string path)
         {
             IFormatter formatter = new BinaryFormatter();
-            Stream streamLoad = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-            TimerGroup loadedGroup = 
+            Stream streamLoad = new FileStream(
+                path,
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.Read);
+            TimerGroup loadedGroup =
                 (TimerGroup)formatter.Deserialize(streamLoad);
             streamLoad.Close();
 
@@ -26,7 +25,11 @@ namespace De.HsFlensburg.cstime079.Services.SerializationService
         public void WriteModelToFile(string path, TimerGroup model)
         {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None);
+            Stream stream = new FileStream(
+                path,
+                FileMode.Create,
+                FileAccess.Write,
+                FileShare.None);
             formatter.Serialize(stream, model);
             stream.Close();
         }

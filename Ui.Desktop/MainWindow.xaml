@@ -4,71 +4,94 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.cstime079.Ui.Desktop"
-        xmlns:viewModel="clr-namespace:De.HsFlensburg.cstime079.Logic.Ui.Wrapper;assembly=Logic.Ui"
-        xmlns:viewModels="clr-namespace:De.HsFlensburg.cstime079.Logic.Ui.ViewModels;assembly=Logic.Ui"
+        Closing="Window_Closing"
         mc:Ignorable="d"
-        Title="Craplication" Height="250" Width="800">
+        Title="cstime 0.8.2" Height="450" Width="800">
     <Window.DataContext>
-        <Binding Source="{StaticResource viewModelLocator}" Path="mainWindowViewModel"></Binding>
+        <Binding Source="{StaticResource viewModelLocator}" Path="MainWindowViewModel"></Binding>
     </Window.DataContext>
+    <Window.IsEnabled>
+        <Binding Source="{StaticResource MessageListener}" Path="BindableProperty"></Binding>
+    </Window.IsEnabled>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Menu>
+        <Menu Height="20" VerticalAlignment="Top">
             <MenuItem Header="File">
-                <MenuItem Header="New Timer" Click="NewTimerDialog"></MenuItem>
+                <MenuItem Header="New Timer" Command="{Binding OpenNewTimerWindowCommand}"></MenuItem>
                 <MenuItem Header="Load" Command="{Binding LoadCommand}"></MenuItem>
                 <MenuItem Header="Save" Command="{Binding SaveCommand}"></MenuItem>
             </MenuItem>
             <MenuItem Header="View">
-                <MenuItem Header="View DataGrid" Click="OpenDataGridWindow"></MenuItem>
+                <MenuItem Header="View DataGrid" Command="{Binding OpenDataGridCommand}"></MenuItem>
             </MenuItem>
         </Menu>
-        <UniformGrid Columns="1" Rows="2">
-            <UniformGrid>
-                <Label VerticalAlignment="Center" HorizontalAlignment="Right">Name</Label>
-                <TextBox VerticalAlignment="Center" Text="{Binding ElementName=timersListView, Path=SelectedItem.name}"></TextBox>
-                <Label VerticalAlignment="Center" HorizontalAlignment="Right">Time</Label>
-                <UniformGrid VerticalAlignment="Center" Columns="3" Rows="1">
-                    <TextBox x:Name="hoursField" VerticalAlignment="Center" TextAlignment="Center" Text="{Binding ElementName=timersListView, Path=SelectedItem.hours}"></TextBox>
-                    <TextBox x:Name="minutesField" VerticalAlignment="Center" TextAlignment="Center" Text="{Binding ElementName=timersListView, Path=SelectedItem.minutes}"></TextBox>
-                    <TextBox x:Name="secondsField" VerticalAlignment="Center" TextAlignment="Center" Text="{Binding ElementName=timersListView, Path=SelectedItem.seconds}"></TextBox>
-                    <TextBox x:Name="secondsAbsoluteField" Visibility="Hidden" Text="{Binding ElementName=timersListView, Path=SelectedItem.secondsAbsolute}"></TextBox>
+        <UniformGrid Columns="1" Rows="2" Margin="5, 20, 5, 5">
+            <UniformGrid Columns="1">
+                <UniformGrid>
+                    <Label VerticalAlignment="Center">Name</Label>
+                    <TextBox VerticalAlignment="Center"
+                             Text="{Binding ElementName=timersListView, Path=SelectedItem.name}">
+                    </TextBox>
+                    <Label VerticalAlignment="Center">Time</Label>
+                    <UniformGrid VerticalAlignment="Center" Columns="3" Rows="1">
+                        <TextBox x:Name="hoursField" VerticalAlignment="Center" TextAlignment="Center"
+                                 Text="{Binding ElementName=timersListView, Path=SelectedItem.hours}">
+                        </TextBox>
+                        <TextBox x:Name="minutesField" VerticalAlignment="Center" TextAlignment="Center"
+                                 Text="{Binding ElementName=timersListView, Path=SelectedItem.minutes}">
+                        </TextBox>
+                        <TextBox x:Name="secondsField" VerticalAlignment="Center" TextAlignment="Center"
+                                 Text="{Binding ElementName=timersListView, Path=SelectedItem.seconds}">
+                        </TextBox>
+                    </UniformGrid>
+                </UniformGrid>
+                <UniformGrid>
+                    <Label VerticalAlignment="Center">Seconds (abs)</Label>
+                    <TextBox x:Name="secondsAbsoluteField" VerticalAlignment="Center"
+                             Text="{Binding ElementName=timersListView, Path=SelectedItem.secondsAbsolute}">
+                    </TextBox>
+                </UniformGrid>
+                <UniformGrid Rows="1">
+                    <Button x:Name="model_Update" Margin="2" Command="{Binding RefreshCommand}">Update</Button>
+                    <Button x:Name="timer_Delete" Command="{Binding Path=DeleteEntryCommand}" Margin="2">
+                        Delete
+                    </Button>
                 </UniformGrid>
             </UniformGrid>
-            <UniformGrid Rows="1" VerticalAlignment="Bottom">
-                <Button x:Name="timer_Start" VerticalAlignment="Bottom" Click="timer_Start_Click">Start</Button>
-                <Button VerticalAlignment="Bottom">Stop</Button>
-                <Button VerticalAlignment="Bottom">Reset</Button>
-                <Button Command="{Binding RenameValueInModelCommand}">Rename</Button>
+            <UniformGrid>
+                <!--Empty Space for additional features-->
             </UniformGrid>
         </UniformGrid>
-        <DataGrid Grid.Column="1" ItemsSource="{Binding Path=timerGroup}" Name="timerGrid" Visibility="Hidden"></DataGrid>
-        <ListView x:Name="timersListView" ItemsSource="{Binding Path=timerGroup}" Grid.Column="1">
+        <ListView x:Name="timersListView" ItemsSource="{Binding Path=timerGroup}" 
+                  SelectedItem="{Binding Path=selectedTimer}" 
+                  SelectedIndex="{Binding Path=SelectedIndex}" Grid.Column="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <UniformGrid Rows="1">
-                        <TextBox Text="{Binding Path=name}"></TextBox>
-                        <UniformGrid Rows="1" Columns="3">
-                            <TextBox Text="{Binding Path=hours}"></TextBox>
-                            <TextBox Text="{Binding Path=minutes}"></TextBox>
-                            <TextBox Text="{Binding Path=seconds}"></TextBox>
+                    <Grid Margin="5" Width="460">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="240"></ColumnDefinition>
+                            <ColumnDefinition Width="136"></ColumnDefinition>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Column="0" Text="{Binding Path=name}" Margin="0, 0, 2, 0"></TextBox>
+                        <UniformGrid Rows="1" Columns="3" Grid.Column="1" Margin="0, 0, 2, 0">
+                            <TextBox Text="{Binding Path=hours}" TextAlignment="Center"></TextBox>
+                            <TextBox Text="{Binding Path=minutes}" TextAlignment="Center"></TextBox>
+                            <TextBox Text="{Binding Path=seconds}" TextAlignment="Center"></TextBox>
                         </UniformGrid>
-                        <UniformGrid Rows="1">
-                            <Button Click="timer_Start_Click">Start</Button>
-                            <Button>Stop</Button>
-                            <Button>Reset</Button>
-                        </UniformGrid>
-                    </UniformGrid>
+                        <Button Grid.Column="2" Click="View_Button_Click">View</Button>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            
         </ListView>
-
     </Grid>
 </Window>

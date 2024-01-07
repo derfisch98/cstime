@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace De.HsFlensburg.cstime079.Logic.Ui.Base
 {
-    public interface IViewModel<TypeOfModel> : INotifyPropertyChanged
+    public interface IViewModel<TOfModel> : INotifyPropertyChanged
     {
-        TypeOfModel Model { get; set; }
+        TOfModel Model { get; set; }
 
-        void NewModelAssigned();
+        void OnPropertyChangedInModel(object sender, PropertyChangedEventArgs e);
     }
 }

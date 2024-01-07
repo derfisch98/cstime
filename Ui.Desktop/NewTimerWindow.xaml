@@ -4,11 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.cstime079.Ui.Desktop"
-        xmlns:viewModels="clr-namespace:De.HsFlensburg.cstime079.Logic.Ui.ViewModels;assembly=Logic.Ui"
         mc:Ignorable="d"
-        Title="New" Height="250" Width="200">
+        Title="New" Height="270" Width="230">
     <Window.DataContext>
-        <Binding Source="{StaticResource viewModelLocator}" Path="newTimerViewModel"></Binding>
+        <Binding Source="{StaticResource viewModelLocator}" Path="NewTimerViewModel"></Binding>
     </Window.DataContext>
     <Grid>
         <UniformGrid Grid.Column="0" Columns="1">
@@ -16,11 +15,14 @@
             <TextBox x:Name="nameField" VerticalAlignment="Center" Text="{Binding name}"></TextBox>
             <Label VerticalAlignment="Center" HorizontalAlignment="Center">Time</Label>
             <UniformGrid VerticalAlignment="Center" Columns="3" Rows="1">
-                <TextBox x:Name="hoursField" VerticalAlignment="Center" TextAlignment="Center" Text="{Binding hours}"></TextBox>
-                <TextBox x:Name="minutesField" VerticalAlignment="Center" TextAlignment="Center" Text="{Binding minutes}"></TextBox>
-                <TextBox x:Name="secondsField" VerticalAlignment="Center" TextAlignment="Center" Text="{Binding seconds}"></TextBox>
+                <TextBox x:Name="hoursField" VerticalAlignment="Center" 
+                         TextAlignment="Center" Text="{Binding hours}"></TextBox>
+                <TextBox x:Name="minutesField" VerticalAlignment="Center" 
+                         TextAlignment="Center" Text="{Binding minutes}"></TextBox>
+                <TextBox x:Name="secondsField" VerticalAlignment="Center" 
+                         TextAlignment="Center" Text="{Binding seconds}"></TextBox>
             </UniformGrid>
-            <Button Command="{Binding addTimer, Mode=OneWay}">Create</Button>
+            <Button Command="{Binding AddTimer, Mode=OneWay}">Create</Button>
         </UniformGrid>
     </Grid>
 </Window>

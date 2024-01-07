@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="DataGrid View" Height="400" Width="600">
     <Window.DataContext>
-        <Binding Source="{StaticResource viewModelLocator}" Path="mainWindowViewModel"></Binding>
+        <Binding Source="{StaticResource viewModelLocator}" Path="DataGridViewModel"></Binding>
     </Window.DataContext>
     <Grid>
         <DataGrid Grid.Column="1" ItemsSource="{Binding Path=timerGroup}" Name="timerGrid"></DataGrid>

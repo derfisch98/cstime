@@ -1,19 +1,8 @@
-﻿using De.HsFlensburg.cstime079.Business.Model.BusinessObjects;
+﻿using De.HsFlensburg.cstime079.Logic.Ui.ViewModels;
 using De.HsFlensburg.cstime079.Logic.Ui.Wrapper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace De.HsFlensburg.cstime079.Ui.Desktop
 {
@@ -23,46 +12,41 @@ namespace De.HsFlensburg.cstime079.Ui.Desktop
     public partial class MainWindow : Window
     {
         public MainWindow()
-        { 
+        {
             InitializeComponent();
         }
 
-        private void NewTimerDialog(object sender, EventArgs e)
+        private void Debug_Click(object sender, RoutedEventArgs e)
         {
-            NewTimerWindow newTimerWindow = new NewTimerWindow();
-            newTimerWindow.ShowDialog();
+            Console.WriteLine("debug");
         }
 
-        private void OpenDataGridWindow(object sender, EventArgs e)
+        private void View_Button_Click(object sender, RoutedEventArgs e)
         {
-            DataGridWindow dataGridWindow = new DataGridWindow();
-            dataGridWindow.Show();
-        }
-
-        private async void timer_Start_Click(object sender, RoutedEventArgs e)
-        {
-            int seconds = Int32.Parse(secondsAbsoluteField.Text);
-            await waitTimer(seconds);
-            MessageBox.Show("Hol deine Pizza aus dem Ofen");
-            Console.WriteLine(timerGrid.SelectedItem.ToString());
-        }
-
-        async Task waitTimer(int seconds)
-        {
-            while (seconds > 0)
+            try
             {
-                Console.WriteLine(seconds);
-                await waitMil(1000);
-                seconds -= 1;
-                secondsField.Text = (seconds % 60 < 10 ? "0" : "") + (seconds % 60).ToString();
-                minutesField.Text = (seconds / 60 % 60 < 10 ? "0" : "") + (seconds / 60 % 60).ToString();
-                hoursField.Text = (seconds / 3600 < 10 ? "0" : "") + (seconds / 3600).ToString();
+                Button btn = (Button)sender;
+                TimerViewModel selected = (TimerViewModel)btn.DataContext;
+                /*
+                OpenViewTimerWindowMessage messageObject = new OpenViewTimerWindowMessage();
+                messageObject.msgName = selected.name;
+                messageObject.msgSecondsAbsolute = selected.secondsAbsolute;
+                Messenger.Instance.Send<OpenViewTimerWindowMessage>(messageObject);
+                */
+
+                ViewTimerWindow window = new ViewTimerWindow(selected.name, selected.secondsAbsolute);
+                window.Show();
+            }
+            catch
+            {
+                // Dead element clicked
             }
         }
 
-        async Task waitMil(int milliseconds)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            await Task.Delay(milliseconds);
+            var mvm = (MainWindowViewModel)this.DataContext;
+            mvm.SaveCommand.Execute(null);
         }
     }
 }

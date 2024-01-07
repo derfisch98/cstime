@@ -3,8 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:De.HsFlensburg.cstime079.Ui.Desktop"
              xmlns:viewModels="clr-namespace:De.HsFlensburg.cstime079.Logic.Ui;assembly=Logic.Ui"
+             xmlns:desktop="clr-namespace:De.HsFlensburg.cstime079.Ui.Desktop.MessageBusLogic"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <viewModels:ViewModelLocator x:Key="viewModelLocator"></viewModels:ViewModelLocator>
+        <desktop:MessageListener x:Key="MessageListener"></desktop:MessageListener>
+        <!-- dark mode attempt (looks terrible)
+        
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#343434"></Setter>
+        </Style>
+        <Style TargetType="Menu">
+            <Setter Property="Foreground" Value="AliceBlue"></Setter>
+            <Setter Property="Background" Value="#343434"></Setter>
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="Background" Value="#343434"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="AliceBlue"></Setter>
+            <Setter Property="Background" Value="#232323"></Setter>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="AliceBlue"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#232323"></Setter>
+            <Setter Property="Foreground" Value="AliceBlue"></Setter>
+        </Style>
+        
+        -->
     </Application.Resources>
 </Application>
